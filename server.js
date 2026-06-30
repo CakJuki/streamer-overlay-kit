@@ -31,6 +31,13 @@ app.prepare().then(() => {
       io.emit("test-message", data);
     });
 
+    // Tahap 3: Panel mengirim "trigger-alert" untuk memunculkan Alert Box
+    // di overlay (sementara masih dipicu manual lewat tombol).
+    socket.on("trigger-alert", (data) => {
+      console.log("[socket] trigger-alert diterima:", data);
+      io.emit("trigger-alert", data);
+    });
+
     socket.on("disconnect", () => {
       console.log("[socket] client terputus:", socket.id);
     });
